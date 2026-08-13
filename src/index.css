@@ -190,7 +190,7 @@ textarea {
   background: var(--text-tertiary);
 }
 
-/* Visible keyboard focus everywhere — never rely on color alone */
+/* Visible keyboard focus everywhere  */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;

@@ -3,6 +3,7 @@
 // swapping this out for real API responses later is a one-file change.
 
 export const dataSources = [
+  // News-wire feed covering federal policy and government-related reporting.
   {
     id: "src-001",
     name: "Federal News Network",
@@ -13,6 +14,7 @@ export const dataSources = [
     pollingInterval: "5 min",
     eventsDetected: 312,
   },
+  // Technology press feed used to monitor vendor and infrastructure reporting.
   {
     id: "src-002",
     name: "Ars Technica",
@@ -23,6 +25,7 @@ export const dataSources = [
     pollingInterval: "10 min",
     eventsDetected: 198,
   },
+  // Broadcast-news feed currently returning degraded service health.
   {
     id: "src-003",
     name: "CNN",
@@ -33,6 +36,7 @@ export const dataSources = [
     pollingInterval: "5 min",
     eventsDetected: 421,
   },
+  // International wire feed for broad news and cross-source comparison.
   {
     id: "src-004",
     name: "Reuters Wire",
@@ -43,6 +47,7 @@ export const dataSources = [
     pollingInterval: "5 min",
     eventsDetected: 356,
   },
+  // Regulatory filing feed used to detect corporate disclosure activity.
   {
     id: "src-005",
     name: "SEC EDGAR Filings",
@@ -53,6 +58,7 @@ export const dataSources = [
     pollingInterval: "15 min",
     eventsDetected: 74,
   },
+  // Internal traffic-sensor network, currently unavailable after maintenance.
   {
     id: "src-006",
     name: "Regional Traffic Sensors",
@@ -66,6 +72,7 @@ export const dataSources = [
 ];
 
 export const intelligenceEvents = [
+  // High-confidence filing pattern that may indicate activity before an earnings call.
   {
     id: "evt-001",
     title: "Unusual filing volume detected ahead of earnings window",
@@ -82,6 +89,7 @@ export const intelligenceEvents = [
     relatedSourceIds: ["src-005", "src-004"],
     tags: ["finance", "filings", "pattern-match"],
   },
+  // Critical alert for unusually similar policy coverage across separate outlets.
   {
     id: "evt-002",
     title: "Coordinated messaging detected across three outlets",
@@ -98,6 +106,7 @@ export const intelligenceEvents = [
     relatedSourceIds: ["src-001", "src-003", "src-004"],
     tags: ["media", "narrative", "coordination"],
   },
+  // Moderate-confidence vendor infrastructure change detected through tech reporting.
   {
     id: "evt-003",
     title: "Server infrastructure change on monitored vendor domain",
@@ -114,6 +123,7 @@ export const intelligenceEvents = [
     relatedSourceIds: ["src-002"],
     tags: ["infrastructure", "vendor-risk"],
   },
+  // Follow-up filing event that strengthens the initial filing-cluster signal.
   {
     id: "evt-004",
     title: "Related entity added to filing cluster",
@@ -128,6 +138,7 @@ export const intelligenceEvents = [
     relatedSourceIds: ["src-005"],
     tags: ["finance", "filings"],
   },
+  // Follow-up media event showing a disputed statistic spreading downstream.
   {
     id: "evt-005",
     title: "Follow-up coverage repeats disputed statistic",
@@ -142,6 +153,7 @@ export const intelligenceEvents = [
     relatedSourceIds: ["src-003"],
     tags: ["media", "narrative"],
   },
+  // Resolved maintenance record documenting sensor recalibration before an outage.
   {
     id: "evt-006",
     title: "Routine sensor recalibration logged",
@@ -156,6 +168,7 @@ export const intelligenceEvents = [
     relatedSourceIds: ["src-006"],
     tags: ["sensors", "maintenance"],
   },
+  // Cross-source logistics alert based on a rapid rise in port-disruption mentions.
   {
     id: "evt-007",
     title: "Spike in cross-source mentions of regional logistics disruption",

@@ -15,7 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
 
-For someone else to run this in their IDE, you only need a small setup:
+To run this in your IDE, youll need this setup:
 
 Install Git - to pull the repo 
 Install Node.js (recommend Node 22 LTS to match your CI)

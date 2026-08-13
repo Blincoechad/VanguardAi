@@ -17,6 +17,7 @@ export function AuthProvider({ children }) {
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
+  // This handles logging in and updates the app state once the user is authenticated.
   async function login(credentials) {
     setIsLoading(true);
     setError(null);
@@ -32,6 +33,7 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // This creates a new account, then saves the returned session so the user is logged in right away.
   async function signUp(details) {
     setIsLoading(true);
     setError(null);
@@ -47,11 +49,13 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // This clears the user's session through the service and updates React state to show they are logged out.
   async function logout() {
     await authService.logout();
     setSession(null);
   }
 
+  // This is the shared auth data and helper functions that any component using this context can access.
   const value = {
     user: session?.user ?? null,
     isAuthenticated: Boolean(session),
@@ -62,9 +66,11 @@ export function AuthProvider({ children }) {
     logout,
   };
 
+  // This provider wraps child components so they can use the authentication state and actions.
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+// This custom hook gives components an easy way to access auth context and catches incorrect usage.
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth must be used within an AuthProvider");
