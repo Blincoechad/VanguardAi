@@ -26,6 +26,7 @@ Then run these steps in terminal:
 - cd VanguarAi
 - npm install
 - npm run dev
+-
 
 **After that, open the local URL Vite prints (usually http://localhost:5173).
 
