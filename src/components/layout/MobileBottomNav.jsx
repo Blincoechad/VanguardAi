@@ -1,18 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { LogOut, MoonStar, SunMedium } from "lucide-react";
 import { mobileMoreItems, mobileNavItems } from "../navigation/navItems.js";
+import { useAuth } from "../../context/AuthContext.jsx";
 import styles from "./MobileBottomNav.module.css";
 
 // Purpose-built for mobile: five destinations, big touch targets, icon over
 // label, fixed to the bottom, safe-area aware. Not a shrunken sidebar.
 const MORE_ACTIVE_ROUTES = new Set(mobileMoreItems.map(({ to }) => to));
 
-export default function MobileBottomNav({ activeAlertCount = 0 }) {
+export default function MobileBottomNav({
+  activeAlertCount = 0,
+  theme = "dark",
+  onToggleTheme = () => {},
+}) {
   const { pathname } = useLocation();
+  const { logout } = useAuth();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const triggerRef = useRef(null);
   const wasMoreOpenRef = useRef(false);
   const isMoreActive = MORE_ACTIVE_ROUTES.has(pathname);
+  const isDark = theme === "dark";
 
   useEffect(() => {
     if (!isMoreOpen) {
@@ -39,6 +47,11 @@ export default function MobileBottomNav({ activeAlertCount = 0 }) {
 
   const closeMoreMenu = () => {
     setIsMoreOpen(false);
+  };
+
+  const handleLogout = async () => {
+    closeMoreMenu();
+    await logout();
   };
 
   return (
@@ -99,7 +112,24 @@ export default function MobileBottomNav({ activeAlertCount = 0 }) {
           aria-label="More navigation menu"
         >
           <div className={styles.sheetHandle} aria-hidden="true" />
-          <div className={styles.sheetHeader}>More</div>
+          <div className={styles.sheetHeaderRow}>
+            <div className={styles.sheetHeader}>More</div>
+            <button
+              type="button"
+              className={styles.themeButton}
+              onClick={onToggleTheme}
+              aria-label={
+                isDark ? "Switch to light theme" : "Switch to dark theme"
+              }
+              aria-pressed={!isDark}
+            >
+              {isDark ? (
+                <SunMedium size={16} aria-hidden="true" />
+              ) : (
+                <MoonStar size={16} aria-hidden="true" />
+              )}
+            </button>
+          </div>
           <div className={styles.sheetItems}>
             {mobileMoreItems.map(({ to, label, icon: Icon }) => (
               <NavLink
@@ -119,6 +149,16 @@ export default function MobileBottomNav({ activeAlertCount = 0 }) {
                 </span>
               </NavLink>
             ))}
+            <button
+              type="button"
+              className={`${styles.sheetItem} ${styles.logoutItem}`}
+              onClick={handleLogout}
+            >
+              <LogOut size={18} aria-hidden="true" />
+              <span className={styles.sheetItemLabel}>
+                <span>Log out</span>
+              </span>
+            </button>
           </div>
         </div>
       </nav>

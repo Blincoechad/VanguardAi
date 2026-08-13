@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import PageHeader from "../../components/layout/PageHeader.jsx";
 import LoadingState from "../../components/ui/LoadingState.jsx";
 import {
@@ -22,6 +23,7 @@ function Toggle({ checked, onChange, label }) {
 }
 
 export default function Settings() {
+  const { theme, setTheme } = useOutletContext();
   const [settings, setSettings] = useState(null);
   const [savedNote, setSavedNote] = useState(false);
 
@@ -30,10 +32,19 @@ export default function Settings() {
   }, []);
 
   useEffect(() => {
-    if (!settings?.appearance?.theme) return;
-    document.documentElement.dataset.theme = settings.appearance.theme;
-    document.documentElement.style.colorScheme = settings.appearance.theme;
-  }, [settings?.appearance?.theme]);
+    if (!settings) return;
+
+    setSettings((current) => {
+      if (!current || current.appearance.theme === theme) {
+        return current;
+      }
+
+      return {
+        ...current,
+        appearance: { ...current.appearance, theme },
+      };
+    });
+  }, [theme, settings]);
 
   if (!settings) return <LoadingState label="Loading settings…" />;
 
@@ -42,6 +53,11 @@ export default function Settings() {
       ...prev,
       [section]: { ...prev[section], [key]: value },
     }));
+
+    if (section === "appearance" && key === "theme") {
+      setTheme(value);
+    }
+
     setSavedNote(false);
   }
 

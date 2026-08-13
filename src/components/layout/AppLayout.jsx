@@ -67,6 +67,9 @@ export default function AppLayout() {
 
   const activeAlertCount =
     alerts?.filter((a) => a.status === "unacknowledged").length ?? 0;
+  const toggleTheme = useCallback(() => {
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
+  }, []);
 
   return (
     <div className={styles.shell}>
@@ -75,9 +78,7 @@ export default function AppLayout() {
           collapsed={collapsed}
           onToggleCollapsed={() => setCollapsed((c) => !c)}
           theme={theme}
-          onToggleTheme={() =>
-            setTheme((current) => (current === "dark" ? "light" : "dark"))
-          }
+          onToggleTheme={toggleTheme}
         />
       </div>
 
@@ -94,6 +95,9 @@ export default function AppLayout() {
               alertsStatus,
               alertsError,
               globalSearchQuery,
+              theme,
+              setTheme,
+              toggleTheme,
               reloadAlerts,
               onAlertStatusChange: handleAlertStatusChange,
             }}
@@ -101,7 +105,11 @@ export default function AppLayout() {
         </div>
       </div>
 
-      <MobileBottomNav activeAlertCount={activeAlertCount} />
+      <MobileBottomNav
+        activeAlertCount={activeAlertCount}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
     </div>
   );
 }
