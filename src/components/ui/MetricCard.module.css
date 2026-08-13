@@ -1,0 +1,52 @@
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.icon {
+  color: var(--text-tertiary);
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.value.warn {
+  color: var(--status-high);
+}
+
+.value.critical {
+  color: var(--status-critical);
+}
+
+.value.good {
+  color: var(--status-online);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}

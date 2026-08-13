@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Vanguard Intelligence — global theme
+   Design language: dark operations console. Everything reads off a small
+   token set below so pages/components stay consistent without repeating
+   hex values everywhere.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg-canvas: #0a0d12;
+  --bg-panel: #10141b;
+  --bg-panel-raised: #151a22;
+  --bg-inset: #0d1117;
+  --bg-hover: #1a2029;
+
+  /* Borders */
+  --border-subtle: #1f2530;
+  --border-default: #2a313d;
+  --border-strong: #3a4353;
+
+  /* Text */
+  --text-primary: #e8ebf0;
+  --text-secondary: #9aa4b5;
+  --text-tertiary: #6b7383;
+  --text-disabled: #454c59;
+
+  /* Brand / accent — a cold signal blue */
+  --accent: #4c8bf5;
+  --accent-dim: #2f4a7a;
+  --accent-bg: rgba(76, 139, 245, 0.1);
+
+  /* Status */
+  --status-critical: #e5484d;
+  --status-critical-bg: rgba(229, 72, 77, 0.12);
+  --status-high: #f2a93b;
+  --status-high-bg: rgba(242, 169, 59, 0.12);
+  --status-medium: #4c9aff;
+  --status-medium-bg: rgba(76, 154, 255, 0.12);
+  --status-low: #8b93a3;
+  --status-low-bg: rgba(139, 147, 163, 0.12);
+  --status-online: #3fb27f;
+  --status-online-bg: rgba(63, 178, 127, 0.12);
+  --status-degraded: #f2a93b;
+  --status-degraded-bg: rgba(242, 169, 59, 0.12);
+  --status-offline: #e5484d;
+  --status-offline-bg: rgba(229, 72, 77, 0.12);
+
+  /* Type */
+  --font-sans:
+    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+  /* Layout */
+  --sidebar-width: 232px;
+  --sidebar-width-collapsed: 68px;
+  --topbar-height: 60px;
+  --bottom-nav-height: 64px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg-canvas: #edf3ff;
+  --bg-panel: #f8fafc;
+  --bg-panel-raised: #ffffff;
+  --bg-inset: #eef3fb;
+  --bg-hover: #e7edf8;
+
+  --border-subtle: #dfe7f5;
+  --border-default: #d2dbea;
+  --border-strong: #b9c6dd;
+
+  --text-primary: #111827;
+  --text-secondary: #4c5a73;
+  --text-tertiary: #69778e;
+  --text-disabled: #8d99ae;
+
+  --accent: #2463eb;
+  --accent-dim: #dfeaff;
+  --accent-bg: rgba(36, 99, 235, 0.11);
+
+  --status-critical: #d93d4b;
+  --status-critical-bg: rgba(217, 61, 75, 0.12);
+  --status-high: #d98d13;
+  --status-high-bg: rgba(217, 141, 19, 0.12);
+  --status-medium: #2f7ef6;
+  --status-medium-bg: rgba(47, 126, 246, 0.12);
+  --status-low: #68778a;
+  --status-low-bg: rgba(104, 119, 138, 0.12);
+  --status-online: #2e8b5a;
+  --status-online-bg: rgba(46, 139, 90, 0.12);
+  --status-degraded: #d98d13;
+  --status-degraded-bg: rgba(217, 141, 19, 0.12);
+  --status-offline: #d93d4b;
+  --status-offline-bg: rgba(217, 61, 75, 0.12);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(76, 139, 245, 0.05),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 100%,
+      rgba(76, 139, 245, 0.03),
+      transparent 45%
+    );
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
+
+/* Scrollbars — kept thin and quiet, console-style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Visible keyboard focus everywhere — never rely on color alone */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Respect reduced-motion preferences across the app */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
