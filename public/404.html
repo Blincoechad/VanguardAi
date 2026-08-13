@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        var base = "/VanguardAi";
+        var path = window.location.pathname;
+
+        // Convert non-hash SPA paths (e.g. /VanguardAi/dashboard) to hash paths
+        // so refreshes work on GitHub Pages without server rewrites.
+        var route = path.startsWith(base) ? path.slice(base.length) : "/";
+        if (!route || route === "/") {
+          window.location.replace(base + "/#/");
+          return;
+        }
+
+        var destination = base + "/#" + route + window.location.search;
+        window.location.replace(destination);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
