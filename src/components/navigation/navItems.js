@@ -6,6 +6,7 @@ import {
   Bell,
   Activity,
   Settings,
+  MoreHorizontal,
 } from "lucide-react";
 
 // Both the desktop sidebar and the mobile bottom nav read from this list so
@@ -27,5 +28,11 @@ export const mobileNavItems = [
   { to: "/correlations", label: "Correl.", icon: GitBranch },
   { to: "/intelligence", label: "Articles", icon: Radar },
   { to: "/sources", label: "Sources", icon: Database },
+  { to: "/more", label: "More", icon: MoreHorizontal },
+];
+
+export const mobileMoreItems = [
   { to: "/alerts", label: "Alerts", icon: Bell },
+  { to: "/system", label: "System Status", icon: Activity },
+  { to: "/settings", label: "Settings", icon: Settings },
 ];

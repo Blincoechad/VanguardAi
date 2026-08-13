@@ -10,6 +10,14 @@
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  border: 0;
+  background: rgba(6, 9, 14, 0.56);
+}
+
 @media (max-width: 860px) {
   .nav {
     display: flex;
@@ -26,14 +34,126 @@
   padding: 9px 4px 8px;
   min-height: var(--bottom-nav-height);
   color: var(--text-tertiary);
+  position: relative;
+  border: 0;
+  background: transparent;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 }
 
+.item:hover,
 .item.active {
   color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.iconWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.badge {
+  position: absolute;
+  top: -7px;
+  left: 11px;
+  min-width: 17px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 72, 77, 0.3);
+  background: var(--status-critical-bg);
+  color: var(--status-critical);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .label {
   font-size: 10.5px;
   font-weight: 500;
   letter-spacing: 0.01em;
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 1px);
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0));
+  background: linear-gradient(180deg, var(--bg-panel-raised), var(--bg-panel));
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-default);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -18px 48px rgba(0, 0, 0, 0.38);
+  transform: translateY(calc(100% + var(--bottom-nav-height)));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.sheetOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sheetHandle {
+  width: 44px;
+  height: 4px;
+  margin: 0 auto 12px;
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+.sheetHeader {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.sheetItems {
+  display: grid;
+  gap: 8px;
+}
+
+.sheetItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  transition:
+    color 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.sheetItem:hover,
+.sheetItemActive {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.sheetItemLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sheetItemLabel .badge {
+  position: static;
+  left: auto;
+  top: auto;
 }
