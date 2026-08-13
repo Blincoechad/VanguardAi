@@ -15,6 +15,10 @@
   width: var(--sidebar-width-collapsed);
 }
 
+.sidebar.collapsed .top {
+  padding: 16px 8px;
+}
+
 .top {
   display: flex;
   align-items: center;
