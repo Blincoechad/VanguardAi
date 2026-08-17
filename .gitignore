@@ -10,6 +10,9 @@ coverage/
 .env.*
 !.env.example
 
+# Local docs / working notes
+docs/
+
 # OS/editor files
 .DS_Store
 .vscode/
