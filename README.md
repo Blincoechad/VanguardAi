@@ -17,17 +17,15 @@ If you are developing a production application, we recommend using TypeScript wi
 
 To run this in your IDE, youll need this setup:
 
-Install Git - to pull the repo 
+Install Git - to pull the repo
 Install Node.js (recommend Node 22 LTS to match your CI)
 Use npm (comes with Node)
 
 Then run these steps in terminal:
+
 - git clone https://github.com/Blincoechad/VanguarAi.git
 - cd VanguarAi
 - npm install
 - npm run dev
--
 
-**After that, open the local URL Vite prints (usually http://localhost:5173).
-
-
+\*\*After that, open the local URL Vite prints (usually http://localhost:5173).
